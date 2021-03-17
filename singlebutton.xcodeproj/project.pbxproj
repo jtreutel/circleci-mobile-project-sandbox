@@ -13,7 +13,6 @@
 		B0B3368E25FF2EB00093F502 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B3368C25FF2EB00093F502 /* Main.storyboard */; };
 		B0B3369025FF2EB10093F502 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0B3368F25FF2EB10093F502 /* Assets.xcassets */; };
 		B0B3369325FF2EB10093F502 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B3369125FF2EB10093F502 /* LaunchScreen.storyboard */; };
-		B0B336A225FF33FE0093F502 /* singlebuttonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B336A125FF33FE0093F502 /* singlebuttonTests.swift */; };
 		B0B336B225FF36600093F502 /* singlebuttonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B336B125FF36600093F502 /* singlebuttonUITests.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,8 +43,6 @@
 		B0B3369225FF2EB10093F502 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B0B3369425FF2EB10093F502 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0B3369F25FF33FE0093F502 /* singlebuttonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = singlebuttonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B0B336A125FF33FE0093F502 /* singlebuttonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = singlebuttonTests.swift; sourceTree = "<group>"; };
-		B0B336A325FF33FE0093F502 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0B336AF25FF36600093F502 /* singlebuttonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = singlebuttonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0B336B125FF36600093F502 /* singlebuttonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = singlebuttonUITests.swift; sourceTree = "<group>"; };
 		B0B336B325FF36600093F502 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -80,7 +77,6 @@
 			isa = PBXGroup;
 			children = (
 				B0B3368525FF2EB00093F502 /* singlebutton */,
-				B0B336A025FF33FE0093F502 /* singlebuttonTests */,
 				B0B336B025FF36600093F502 /* singlebuttonUITests */,
 				B0B3368425FF2EB00093F502 /* Products */,
 			);
@@ -108,15 +104,6 @@
 				B0B3369425FF2EB10093F502 /* Info.plist */,
 			);
 			path = singlebutton;
-			sourceTree = "<group>";
-		};
-		B0B336A025FF33FE0093F502 /* singlebuttonTests */ = {
-			isa = PBXGroup;
-			children = (
-				B0B336A125FF33FE0093F502 /* singlebuttonTests.swift */,
-				B0B336A325FF33FE0093F502 /* Info.plist */,
-			);
-			path = singlebuttonTests;
 			sourceTree = "<group>";
 		};
 		B0B336B025FF36600093F502 /* singlebuttonUITests */ = {
@@ -268,7 +255,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0B336A225FF33FE0093F502 /* singlebuttonTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

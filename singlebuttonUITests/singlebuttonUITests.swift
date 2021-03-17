@@ -23,12 +23,12 @@ class singlebuttonUITests: XCTestCase {
     }
 
     func testExample() throws {
-        // UI tests must launch the application that they test.
+        // Launch app and click the button.
         let app = XCUIApplication()
         app.launch()
-        app.children(matching: .window).element(boundBy: 5).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element(boundBy: 0).tap()
         app/*@START_MENU_TOKEN@*/.staticTexts["Push me"]/*[[".buttons[\"Push me\"].staticTexts[\"Push me\"]",".staticTexts[\"Push me\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         app.alerts["This is a test app."].scrollViews.otherElements.buttons["OK"].tap()
+        
         
         
         // Use recording to get started writing UI tests.
