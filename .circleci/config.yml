@@ -8,7 +8,7 @@ jobs: # a basic unit of work in a run
       - run:
           # run our tests using xcode's cli tool `xcodebuild`
           name: Run Unit Tests
-          command: xcodebuild test -scheme singlebutton
+          command: xcodebuild test -scheme singlebutton -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3'
       - run:
           # build our application
           name: Build Application
