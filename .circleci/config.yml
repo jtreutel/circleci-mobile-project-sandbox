@@ -1,22 +1,45 @@
+# .circleci/config.yml
 version: 2.1
-jobs: # a basic unit of work in a run
-  build: # runs not using `Workflows` must have a `build` job as entry point
-    macos:  # indicate that we are using the macOS executor
-      xcode: 12.4.0 # indicate our selected version of Xcode
-    steps: # a series of commands to run
-      - checkout  # pull down code from your version control system.
+jobs:
+  build-and-test:
+    macos:
+      xcode: 12.4.0
+    environment:
+      FL_OUTPUT_DIR: output
+      FASTLANE_LANE: test
+    steps:
+      - checkout
+      - run: bundle install
       - run:
-          # run our tests using xcode's cli tool `xcodebuild`
-          name: Run Unit Tests
-          command: xcodebuild test -scheme singlebutton -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.4'
+          name: Fastlane
+          command: bundle exec fastlane $FASTLANE_LANE
+      - store_artifacts:
+          path: output
+      - store_test_results:
+          path: output/scan
+
+  adhoc:
+    macos:
+      xcode: 12.4.0
+    environment:
+      FL_OUTPUT_DIR: output
+      FASTLANE_LANE: adhoc
+    steps:
+      - checkout
+      - run: bundle install
       - run:
-          # build our application
-          name: Build Application
-          command: xcodebuild
-      - run:
-          # compress Xcode's build output so that it can be stored as an artifact
-          name: Compress app for storage
-          command: zip -r app.zip build/Release/circleci-demo-macos.app
-      - store_artifacts: # store this build output. Read more: https://circleci.com/docs/2.0/artifacts/
-          path: app.zip
-          destination: app
+          name: Fastlane
+          command: bundle exec fastlane $FASTLANE_LANE
+      - store_artifacts:
+          path: output
+
+workflows:
+  build-test-adhoc:
+    jobs:
+      - build-and-test
+      - adhoc:
+          filters:
+            branches:
+              only: development
+          requires:
+            - build-and-test
