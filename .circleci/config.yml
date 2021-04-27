@@ -1,3 +1,5 @@
+#TODO: Add alternate version with YAML anchors in a config_optimized.yml file
+
 # .circleci/config.yml
 version: 2.1
 jobs:
@@ -33,6 +35,36 @@ jobs:
       - store_artifacts:
           path: output
 
+  testflight:
+    macos:
+      xcode: 12.4.0
+    environment:
+      FL_OUTPUT_DIR: output
+      FASTLANE_LANE: testflight
+    steps:
+      - checkout
+      - run: bundle install
+      - run:
+          name: Fastlane
+          command: bundle exec fastlane $FASTLANE_LANE
+      - store_artifacts:
+          path: output
+
+  deploy:
+      macos:
+        xcode: 12.4.0
+      environment:
+        FL_OUTPUT_DIR: output
+        FASTLANE_LANE: deploy
+      steps:
+        - checkout
+        - run: bundle install
+        - run:
+            name: Fastlane
+            command: bundle exec fastlane $FASTLANE_LANE
+        - store_artifacts:
+            path: output
+
 workflows:
   build-test-adhoc:
     jobs:
@@ -41,5 +73,11 @@ workflows:
           filters:
             branches:
               only: development
+          requires:
+            - build-and-test
+      - deploy:
+          requires:
+            - build-and-test
+      - testflight:
           requires:
             - build-and-test

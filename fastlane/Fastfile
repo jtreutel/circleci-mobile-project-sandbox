@@ -16,4 +16,68 @@ platform :ios do
     match(type: "adhoc")
     gym(export_method: "ad-hoc")
   end
+
+  desc "Upload Release to App Store"
+  lane :upload_release do
+    # Get the version number from the project and check against
+    # the latest build already available on App Store Connect, then
+    # increase the build number by 1. If no build is available
+    # for that version, then start at 1
+    #increment_build_number(
+    #  build_number: app_store_build_number(
+    #    initial_build_number: 1,
+    #    version: get_version_number(xcodeproj: "HelloCircle.xcodeproj"),
+    #    live: false
+    #  ) + 1,
+    #)
+
+    #Trying this instead per CCI docs
+    increment_build_number(
+      build_number: "$CIRCLE_BUILD_NUM"
+    )
+      
+    # Set up Distribution code signing and build the app
+    match(type: "appstore")
+    gym()#scheme: "HelloCircle")
+    # Upload the binary to App Store Connect
+    deliver(
+      submit_for_review: false,
+      force: true
+    )
+  end
+
+  desc "Upload to Testflight"
+  lane :upload_testflight do
+    # Get the version number from the project and check against
+    # the latest build already available on App Store Connect, then
+    # increase the build number by 1. If no build is available
+    # for that version, then start at 1
+    #increment_build_number(
+    #  build_number: app_store_build_number(
+    #    initial_build_number: 1,
+    #    version: get_version_number(xcodeproj: "HelloCircle.xcodeproj"),
+    #    live: false
+    #  ) + 1,
+    #)
+
+    #Trying this instead per CCI docs
+    increment_build_number(
+      build_number: "$CIRCLE_BUILD_NUM"
+    )
+
+    # Set up Distribution code signing and build the app
+    match(type: "appstore")
+    gym()#scheme: "HelloWorld")
+    # Upload the binary to TestFlight and automatically publish
+    # to the configured beta testing group
+    pilot(
+      distribute_external: true,
+      notify_external_testers: true,
+      groups: ["HelloWorld Beta Testers"],
+      changelog: "This is another new build from CircleCI!"
+    )
+  end
+
+  
+
 end
