@@ -40,7 +40,7 @@ platform :ios do
     match(type: "appstore", readonly: is_ci) 
     gym(
       scheme: "singlebutton", 
-      export_method: "app-store"
+      export_method: "app-store",
       export_options: {
           provisioningProfiles: { 
             "com.jtreutel.singlebutton" => "match AppStore com.jtreutel.singlebutton"
