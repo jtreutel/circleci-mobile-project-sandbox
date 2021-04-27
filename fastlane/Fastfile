@@ -38,8 +38,8 @@ platform :ios do
       
     # Set up Distribution code signing and build the app
     match(type: "appstore", readonly: is_ci) 
-    gym(scheme: "singlebutton")
-    
+    gym(scheme: "singlebutton", export_method: "app-store")
+
     # Upload the binary to App Store Connect
     deliver(
       submit_for_review: false,
