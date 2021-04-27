@@ -37,8 +37,9 @@ platform :ios do
     )
       
     # Set up Distribution code signing and build the app
-    match(type: "appstore")
-    gym()#scheme: "HelloCircle")
+    match(type: "appstore", readonly: is_ci) 
+    gym(scheme: "singlebutton")
+    
     # Upload the binary to App Store Connect
     deliver(
       submit_for_review: false,
