@@ -68,16 +68,19 @@ jobs:
 workflows:
   build-test-adhoc:
     jobs:
-      - build-and-test
+      - build-and-test:
+          filters:
+            branches:
+              only: neverrun
       - adhoc:
           filters:
             branches:
               only: development
           requires:
             - build-and-test
-      - deploy:
-          requires:
-            - build-and-test
-      - testflight:
-          requires:
-            - build-and-test
+      - deploy
+          #requires:
+          #  - build-and-test
+      - testflight
+          #requires:
+          #  - build-and-test
