@@ -40,7 +40,7 @@ jobs:
       xcode: 12.4.0
     environment:
       FL_OUTPUT_DIR: output
-      FASTLANE_LANE: testflight
+      FASTLANE_LANE: execute_testflight
     steps:
       - checkout
       - run: bundle install
