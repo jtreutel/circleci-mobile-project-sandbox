@@ -1,0 +1,17 @@
+# The Deliverfile allows you to store various App Store Connect metadata
+# For more information, check out the docs
+# https://docs.fastlane.tools/actions/deliver/
+
+deliver(
+  submit_for_review: true,
+  force: true,
+  app_review_information(
+    first_name: "Jennings",
+    last_name: "Treutel",
+    phone_number: "+81 12345678",
+    email_address: "jennings@circleci.com",
+    demo_user: "demoUser",
+    demo_password: "demoPass",
+    notes: "Lorem ipsum dolor sit amet."
+  )
+)
